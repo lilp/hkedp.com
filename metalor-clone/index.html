@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDP 電鍍塗裝 - 專業電鍍表面處理服務供應商</title>
+    <title>鴻光（鴻昱）電著塗裝股份有限公司 - 專業電鍍表面處理服務供應商</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,7 +41,7 @@
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <div class="flex-shrink-0 flex items-center">
-                        <img class="h-8 w-auto" src="images/logo.png" alt="EDP 電鍍塗裝">
+                        <img class="h-8 w-auto" src="images/logo.png" alt="鴻光（鴻昱）電著塗裝股份有限公司">
                     </div>
                 </div>
 
@@ -109,6 +109,20 @@
                     <!-- 成功案例 -->
                     <a href="cases/index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">成功案例</a>
                     
+                    <!-- ESG 永續經營 -->
+                    <div class="relative" @mouseenter="toggleMenu('esg')" @mouseleave="activeMenu = null">
+                        <button class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">
+                            ESG 永續經營
+                        </button>
+                        <div x-show="activeMenu === 'esg'" 
+                             class="absolute left-0 mt-2 w-64 bg-white border shadow-lg rounded-md z-50">
+                            <a href="esg/overview.html" class="block px-4 py-2 hover:bg-gray-100">ESG 概述</a>
+                            <a href="esg/environment.html" class="block px-4 py-2 hover:bg-gray-100">環境責任</a>
+                            <a href="esg/social.html" class="block px-4 py-2 hover:bg-gray-100">社會責任</a>
+                            <a href="esg/governance.html" class="block px-4 py-2 hover:bg-gray-100">公司治理</a>
+                        </div>
+                    </div>
+                    
                     <!-- 新聞與技術 -->
                     <a href="news/index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">新聞與技術</a>
                     
@@ -147,8 +161,41 @@
                     </div>
                 </div>
                 
-                <!-- 其他手機版選單項目將在另一個編輯中添加 -->
+                <!-- 服務項目(手機版) -->
+                <div class="space-y-1">
+                    <button @click="toggleMenu('mobileServices')" class="w-full text-left px-3 py-2 text-gray-700 flex justify-between items-center">
+                        服務項目
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="activeMenu === 'mobileServices'" class="pl-4">
+                        <a href="services/plating.html" class="block px-3 py-2 text-gray-700">電著塗裝</a>
+                        <a href="services/coating.html" class="block px-3 py-2 text-gray-700">表面處理</a>
+                        <a href="services/customization.html" class="block px-3 py-2 text-gray-700">客製化加工</a>
+                        <a href="services/technical-support.html" class="block px-3 py-2 text-gray-700">技術支援</a>
+                    </div>
+                </div>
                 
+                <a href="cases/index.html" class="block px-3 py-2 text-gray-700">成功案例</a>
+                
+                <!-- ESG 永續經營 (手機版) -->
+                <div class="space-y-1">
+                    <button @click="toggleMenu('mobileESG')" class="w-full text-left px-3 py-2 text-gray-700 flex justify-between items-center">
+                        ESG 永續經營
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="activeMenu === 'mobileESG'" class="pl-4">
+                        <a href="esg/overview.html" class="block px-3 py-2 text-gray-700">ESG 概述</a>
+                        <a href="esg/environment.html" class="block px-3 py-2 text-gray-700">環境責任</a>
+                        <a href="esg/social.html" class="block px-3 py-2 text-gray-700">社會責任</a>
+                        <a href="esg/governance.html" class="block px-3 py-2 text-gray-700">公司治理</a>
+                    </div>
+                </div>
+                
+                <a href="news/index.html" class="block px-3 py-2 text-gray-700">新聞與技術</a>
                 <a href="contact/index.html" class="block px-3 py-2 text-gray-700">聯絡我們</a>
             </div>
         </div>
@@ -162,18 +209,18 @@
             <div class="relative z-10 py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl">
                     <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-                        優質電鍍<span class="text-blue-400">表面處理專家</span>
+                        專業電著塗裝<span class="text-blue-400">表面處理專家</span>
                     </h1>
                     <p class="mt-6 text-xl text-gray-300 max-w-3xl">
-                        提供品質標準、準時交期、專業服務的電鍍塗裝供應商，<br>
-                        滿足您在泰國的製造需求。
+                        鴻光（鴻昱）專注於金屬電著塗裝與表面處理服務，擁有40年以上經驗，<br>
+                        為汽車、電子、工業等領域客戶提供高品質解決方案。
                     </p>
                     <div class="mt-10 flex">
                         <a href="contact/index.html" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-md text-white font-medium">
-                            立即諮詢
+                            索取報價
                         </a>
                         <a href="services/index.html" class="ml-4 bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-md text-white font-medium">
-                            了解服務
+                            了解服務項目
                         </a>
                     </div>
                 </div>
@@ -434,10 +481,13 @@
                 <div>
                     <h3 class="text-lg font-semibold mb-4">聯絡我們</h3>
                     <address class="not-italic">
-                        <p class="mb-2">EDP 電鍍塗裝 (泰國) 有限公司</p>
-                        <p class="mb-2">地址：123 Industrial Estate, Rayong, Thailand</p>
-                        <p class="mb-2">電話：+66 12-345-6789</p>
-                        <p class="mb-2">Email：info@edp-coating.com</p>
+                        <p class="mb-2">鴻光電著塗裝股份有限公司</p>
+                        <p class="mb-2">地址：370/1 Moo.4 Bangpu Industrial Estate,<br>
+                        Prekesa Rd., Tambon Prekesa,<br>
+                        Ampur Mueang Samutprakan,<br>
+                        Samutprakan 10280</p>
+                        <p class="mb-2">電話：02-709-3757~8</p>
+                        <p class="mb-2">Email：free62566hyedp@gmail.com</p>
                     </address>
                 </div>
                 
@@ -503,7 +553,7 @@
             <!-- 版權資訊 -->
             <div class="mt-8 border-t border-gray-700 pt-8">
                 <p class="text-center text-gray-400 text-sm">
-                    © 2024 EDP 電鍍塗裝 (泰國) 有限公司. 版權所有
+                    © 2024 鴻光（鴻昱）電著塗裝股份有限公司. 版權所有
                 </p>
                 
                 <!-- 語言選擇 -->
