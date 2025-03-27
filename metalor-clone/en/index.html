@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDP Plating - Professional Metal Surface Treatment Services</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Include Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-white">
+    <!-- Top language selection -->
+    <div class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-1 flex justify-end text-sm">
+            <div class="flex space-x-4">
+                <a href="../en/index.html" class="hover:text-blue-300 font-medium">English</a>
+                <a href="../th/index.html" class="hover:text-blue-300">ภาษาไทย</a>
+                <a href="../jp/index.html" class="hover:text-blue-300">日本語</a>
+                <a href="../zh-tw/index.html" class="hover:text-blue-300">繁體中文</a>
+                <a href="../zh-cn/index.html" class="hover:text-blue-300">简体中文</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <nav class="bg-white shadow-lg" x-data="{ 
+        isOpen: false,
+        activeMenu: null,
+        activeSubmenu: null,
+        toggleMenu(menu) {
+            this.activeMenu = this.activeMenu === menu ? null : menu;
+            this.activeSubmenu = null;
+        },
+        toggleSubmenu(submenu) {
+            this.activeSubmenu = this.activeSubmenu === submenu ? null : submenu;
+        }
+    }">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="../images/logo.png" alt="EDP Plating">
+                    </div>
+                </div>
+
+                <!-- Desktop menu -->
+                <div class="hidden sm:flex sm:items-center space-x-4">
+                    <!-- Home -->
+                    <a href="index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">Home</a>
+                    
+                    <!-- About Us -->
+                    <div class="relative" @mouseenter="toggleMenu('about')" @mouseleave="activeMenu = null">
+                        <button class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">
+                            About Us
+                        </button>
+                        <div x-show="activeMenu === 'about'" 
+                             class="absolute left-0 mt-2 w-64 bg-white border shadow-lg rounded-md z-50">
+                            <a href="about/company.html" class="block px-4 py-2 hover:bg-gray-100">Company Profile</a>
+                            <a href="about/team.html" class="block px-4 py-2 hover:bg-gray-100">Team & Organization</a>
+                            <a href="about/quality.html" class="block px-4 py-2 hover:bg-gray-100">Quality & Certifications</a>
+                            <a href="about/factory.html" class="block px-4 py-2 hover:bg-gray-100">Factory Environment</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div class="relative" @mouseenter="toggleMenu('services')" @mouseleave="activeMenu = null">
+                        <button class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">
+                            Services
+                        </button>
+                        <div x-show="activeMenu === 'services'"
+                             class="absolute left-0 mt-2 w-64 bg-white border shadow-lg rounded-md z-50">
+                            <!-- Plating Services -->
+                            <div class="relative" @mouseenter="toggleSubmenu('plating')" @mouseleave="activeSubmenu = null">
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                                    Plating Services
+                                </button>
+                                <div x-show="activeSubmenu === 'plating'"
+                                     class="absolute left-full top-0 w-64 bg-white border shadow-lg rounded-md">
+                                    <a href="services/plating-nickel.html" class="block px-4 py-2 hover:bg-gray-100">Nickel Plating</a>
+                                    <a href="services/plating-chrome.html" class="block px-4 py-2 hover:bg-gray-100">Chrome Plating</a>
+                                    <a href="services/plating-zinc.html" class="block px-4 py-2 hover:bg-gray-100">Zinc Plating</a>
+                                    <a href="services/plating-alloy.html" class="block px-4 py-2 hover:bg-gray-100">Alloy Plating</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Coating Services -->
+                            <div class="relative" @mouseenter="toggleSubmenu('coating')" @mouseleave="activeSubmenu = null">
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                                    Coating Services
+                                </button>
+                                <div x-show="activeSubmenu === 'coating'"
+                                     class="absolute left-full top-0 w-64 bg-white border shadow-lg rounded-md">
+                                    <a href="services/coating-spray.html" class="block px-4 py-2 hover:bg-gray-100">Spray & Powder Coating</a>
+                                    <a href="services/coating-anticorrosion.html" class="block px-4 py-2 hover:bg-gray-100">Anti-Corrosion Coating</a>
+                                    <a href="services/coating-custom.html" class="block px-4 py-2 hover:bg-gray-100">Custom Surface Treatment</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Custom Processing -->
+                            <a href="services/customization.html" class="block px-4 py-2 hover:bg-gray-100">Custom Processing</a>
+                            
+                            <!-- Technical Support -->
+                            <a href="services/technical-support.html" class="block px-4 py-2 hover:bg-gray-100">Technical Support</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Case Studies -->
+                    <a href="cases/index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">Case Studies</a>
+                    
+                    <!-- ESG Sustainability -->
+                    <div class="relative" @mouseenter="toggleMenu('esg')" @mouseleave="activeMenu = null">
+                        <button class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">
+                            ESG Sustainability
+                        </button>
+                        <div x-show="activeMenu === 'esg'" 
+                             class="absolute left-0 mt-2 w-64 bg-white border shadow-lg rounded-md z-50">
+                            <a href="esg/overview.html" class="block px-4 py-2 hover:bg-gray-100">ESG Overview</a>
+                            <a href="esg/environment.html" class="block px-4 py-2 hover:bg-gray-100">Environmental Responsibility</a>
+                            <a href="esg/social.html" class="block px-4 py-2 hover:bg-gray-100">Social Responsibility</a>
+                            <a href="esg/governance.html" class="block px-4 py-2 hover:bg-gray-100">Governance</a>
+                        </div>
+                    </div>
+                    
+                    <!-- News & Technology -->
+                    <a href="news/index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">News & Technology</a>
+                    
+                    <!-- Contact Us -->
+                    <a href="contact/index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">Contact Us</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex items-center sm:hidden">
+                    <button @click="isOpen = !isOpen" class="text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile expanded menu -->
+        <div x-show="isOpen" class="sm:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700">Home</a>
+                
+                <div class="space-y-1">
+                    <button @click="toggleMenu('mobileAbout')" class="w-full text-left px-3 py-2 text-gray-700 flex justify-between items-center">
+                        About Us
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="activeMenu === 'mobileAbout'" class="pl-4">
+                        <a href="about/company.html" class="block px-3 py-2 text-gray-700">Company Profile</a>
+                        <a href="about/team.html" class="block px-3 py-2 text-gray-700">Team & Organization</a>
+                        <a href="about/quality.html" class="block px-3 py-2 text-gray-700">Quality & Certifications</a>
+                        <a href="about/factory.html" class="block px-3 py-2 text-gray-700">Factory Environment</a>
+                    </div>
+                </div>
+                
+                <!-- Services (Mobile) -->
+                <div class="space-y-1">
+                    <button @click="toggleMenu('mobileServices')" class="w-full text-left px-3 py-2 text-gray-700 flex justify-between items-center">
+                        Services
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="activeMenu === 'mobileServices'" class="pl-4">
+                        <a href="services/plating.html" class="block px-3 py-2 text-gray-700">Plating Services</a>
+                        <a href="services/coating.html" class="block px-3 py-2 text-gray-700">Coating Services</a>
+                        <a href="services/customization.html" class="block px-3 py-2 text-gray-700">Custom Processing</a>
+                        <a href="services/technical-support.html" class="block px-3 py-2 text-gray-700">Technical Support</a>
+                    </div>
+                </div>
+                
+                <a href="cases/index.html" class="block px-3 py-2 text-gray-700">Case Studies</a>
+                
+                <!-- ESG Sustainability (Mobile) -->
+                <div class="space-y-1">
+                    <button @click="toggleMenu('mobileESG')" class="w-full text-left px-3 py-2 text-gray-700 flex justify-between items-center">
+                        ESG Sustainability
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="activeMenu === 'mobileESG'" class="pl-4">
+                        <a href="esg/overview.html" class="block px-3 py-2 text-gray-700">ESG Overview</a>
+                        <a href="esg/environment.html" class="block px-3 py-2 text-gray-700">Environmental Responsibility</a>
+                        <a href="esg/social.html" class="block px-3 py-2 text-gray-700">Social Responsibility</a>
+                        <a href="esg/governance.html" class="block px-3 py-2 text-gray-700">Governance</a>
+                    </div>
+                </div>
+                
+                <a href="news/index.html" class="block px-3 py-2 text-gray-700">News & Technology</a>
+                <a href="contact/index.html" class="block px-3 py-2 text-gray-700">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Banner -->
+    <div class="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-16 sm:py-24 flex flex-col lg:flex-row items-center">
+            <div class="lg:w-1/2 lg:pr-12 mb-10 lg:mb-0">
+                <h1 class="text-4xl sm:text-5xl font-bold leading-tight mb-6">Professional Surface Treatment & Plating Solutions</h1>
+                <p class="text-xl mb-8">We specialize in metal surface treatment, plating and coating services, providing high-quality finishing technologies and solutions for clients across various industries.</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="contact/quote.html" class="btn bg-white text-blue-800 hover:bg-gray-100 font-bold py-3 px-6 rounded-md shadow-lg flex items-center justify-center">
+                        Get a Quote
+                        <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                    <a href="services/index.html" class="btn border-2 border-white hover:bg-white hover:text-blue-800 font-bold py-3 px-6 rounded-md flex items-center justify-center transition duration-300">
+                        Our Services
+                    </a>
+                </div>
+            </div>
+            <div class="lg:w-1/2">
+                <img src="../images/banner-plating.jpg" alt="Professional Plating and Coating Services" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+    </div>
+
+    <!-- Core Stats -->
+    <section class="bg-gray-100 py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-800 mb-2">20+</h3>
+                    <p class="text-gray-600">Years of Experience</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-800 mb-2">1,500+</h3>
+                    <p class="text-gray-600">Completed Projects</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-4xl font-bold text-gray-800 mb-2">ISO</h3>
+                    <p class="text-gray-600">9001 & 14001 Certified</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Our Professional Services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Providing high-quality plating, coating and customized surface treatment solutions to meet various industry needs.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Plating Services -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="h-56 overflow-hidden">
+                        <img src="../images/service-plating.jpg" alt="Plating Services" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Plating Services</h3>
+                        <p class="text-gray-600 mb-4">
+                            Offering various metal plating services including nickel, chrome, zinc, and alloy plating to enhance appearance, corrosion resistance, and wear resistance.
+                        </p>
+                        <ul class="mb-6 text-gray-700">
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Nickel & Hard Nickel Plating
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Chrome & Hard Chrome Plating
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Zinc & Zinc Alloy Plating
+                            </li>
+                        </ul>
+                        <a href="services/plating.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Coating Services -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="h-56 overflow-hidden">
+                        <img src="../images/service-coating.jpg" alt="Coating Services" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Coating Services</h3>
+                        <p class="text-gray-600 mb-4">
+                            Precision coating and surface treatment techniques including liquid painting, powder coating, and special functional coatings for superior appearance and protection.
+                        </p>
+                        <ul class="mb-6 text-gray-700">
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Spray & Powder Coating
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Anti-Corrosion Coatings
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Custom Surface Treatments
+                            </li>
+                        </ul>
+                        <a href="services/coating.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Custom Processing -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
+                    <div class="h-56 overflow-hidden">
+                        <img src="../images/service-custom.jpg" alt="Custom Processing" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Custom Processing</h3>
+                        <p class="text-gray-600 mb-4">
+                            Tailored surface treatment and custom processing services according to customer requirements, combining different technologies for unique solutions.
+                        </p>
+                        <ul class="mb-6 text-gray-700">
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Combined Surface Treatments
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Product Design Optimization
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <svg class="w-5 h-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Technical Consulting & Support
+                            </li>
+                        </ul>
+                        <a href="services/customization.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Showcase -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Case Studies</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We provide high-quality plating and coating solutions for various industries. Here are some of our successful projects.
+                </p>
+            </div>
+            
+            <!-- Case Categories -->
+            <div class="flex flex-wrap justify-center mb-12 space-x-2 space-y-2 sm:space-y-0">
+                <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">All Cases</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300 border border-gray-300">Automotive</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300 border border-gray-300">Industrial</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300 border border-gray-300">Electronics</button>
+                <button class="bg-white text-gray-700 px-4 py-2 rounded-md hover:bg-gray-100 transition duration-300 border border-gray-300">Medical</button>
+            </div>
+            
+            <!-- Case Gallery -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Case 1 -->
+                <div class="group">
+                    <div class="relative overflow-hidden rounded-lg shadow-md">
+                        <img src="../images/case-auto.jpg" alt="Automotive Parts Plating" class="w-full h-64 object-cover transition duration-300 transform group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <a href="cases/automotive.html" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="mt-4 text-lg font-semibold text-gray-800">Automotive Chrome Plating</h3>
+                    <p class="text-gray-600">Surface treatment solutions for automotive components</p>
+                </div>
+                
+                <!-- Case 2 -->
+                <div class="group">
+                    <div class="relative overflow-hidden rounded-lg shadow-md">
+                        <img src="../images/case-industrial.jpg" alt="Industrial Machine Parts" class="w-full h-64 object-cover transition duration-300 transform group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <a href="cases/industrial.html" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="mt-4 text-lg font-semibold text-gray-800">Industrial Hard Chrome Plating</h3>
+                    <p class="text-gray-600">Wear-resistant treatments for industrial equipment</p>
+                </div>
+                
+                <!-- Case 3 -->
+                <div class="group">
+                    <div class="relative overflow-hidden rounded-lg shadow-md">
+                        <img src="../images/case-electronics.jpg" alt="Electronics Gold Plating" class="w-full h-64 object-cover transition duration-300 transform group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <a href="cases/electronics.html" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="mt-4 text-lg font-semibold text-gray-800">Electronic Connector Gold Plating</h3>
+                    <p class="text-gray-600">Precision surface treatment for electronic components</p>
+                </div>
+                
+                <!-- Case 4 -->
+                <div class="group">
+                    <div class="relative overflow-hidden rounded-lg shadow-md">
+                        <img src="../images/case-medical.jpg" alt="Medical Devices" class="w-full h-64 object-cover transition duration-300 transform group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                            <a href="cases/medical.html" class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="mt-4 text-lg font-semibold text-gray-800">Medical Device Special Plating</h3>
+                    <p class="text-gray-600">Medical-grade surface treatment solutions</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="cases/index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-md transition duration-300">
+                    View More Cases
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Advantages -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Our Advantages</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Why choose EDP Plating? We have extensive experience, innovative technology, and excellent quality.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Advantage 1 -->
+                <div class="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Quality Assurance</h3>
+                    <p class="text-gray-600">
+                        ISO 9001 and ISO 14001 certified with strict quality control processes to ensure every product meets international standards.
+                    </p>
+                </div>
+                
+                <!-- Advantage 2 -->
+                <div class="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Innovative Technology</h3>
+                    <p class="text-gray-600">
+                        Continuous investment in advanced equipment and innovative processes to provide more environmentally friendly and efficient surface treatment solutions.
+                    </p>
+                </div>
+                
+                <!-- Advantage 3 -->
+                <div class="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Extensive Experience</h3>
+                    <p class="text-gray-600">
+                        Over 20 years of industry experience with expertise in various metal surface treatment processes to address complex technical challenges.
+                    </p>
+                </div>
+                
+                <!-- Advantage 4 -->
+                <div class="bg-gray-50 rounded-lg p-8 text-center hover:shadow-lg transition duration-300">
+                    <div class="text-blue-600 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Customer-Centric</h3>
+                    <p class="text-gray-600">
+                        Professional customer service with technical support throughout the entire process from product development to production, ensuring customer requirements are met.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Contact Information -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact Us</h3>
+                    <address class="not-italic">
+                        <p class="mb-2">EDP Plating (Thailand) Co., Ltd.</p>
+                        <p class="mb-2">Address: 123 Industrial Estate, Rayong, Thailand</p>
+                        <p class="mb-2">Phone: +66 12-345-6789</p>
+                        <p class="mb-2">Email: info@edp-coating.com</p>
+                    </address>
+                </div>
+                
+                <!-- Services Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="services/plating.html" class="text-gray-300 hover:text-white">Plating Services</a></li>
+                        <li><a href="services/coating.html" class="text-gray-300 hover:text-white">Coating Services</a></li>
+                        <li><a href="services/customization.html" class="text-gray-300 hover:text-white">Custom Processing</a></li>
+                        <li><a href="services/technical-support.html" class="text-gray-300 hover:text-white">Technical Support</a></li>
+                    </ul>
+                </div>
+                
+                <!-- About Us -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">About Us</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about/company.html" class="text-gray-300 hover:text-white">Company Profile</a></li>
+                        <li><a href="about/quality.html" class="text-gray-300 hover:text-white">Quality & Certifications</a></li>
+                        <li><a href="about/factory.html" class="text-gray-300 hover:text-white">Factory Environment</a></li>
+                        <li><a href="cases/index.html" class="text-gray-300 hover:text-white">Case Studies</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Social Media and Certifications -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <!-- Certification Logos -->
+                    <div class="border-t border-gray-700 pt-4">
+                        <h4 class="text-base font-medium mb-2">Certifications</h4>
+                        <div class="flex space-x-3">
+                            <img src="../images/iso9001.png" alt="ISO 9001" class="h-10 bg-white p-1 rounded">
+                            <img src="../images/iso14001.png" alt="ISO 14001" class="h-10 bg-white p-1 rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Copyright Information -->
+            <div class="mt-8 border-t border-gray-700 pt-8">
+                <p class="text-center text-gray-400 text-sm">
+                    © 2024 EDP Plating (Thailand) Co., Ltd. All rights reserved.
+                </p>
+                
+                <!-- Language Selection -->
+                <div class="mt-4 flex justify-center space-x-4 text-sm">
+                    <a href="../en/index.html" class="text-gray-400 hover:text-white font-medium">English</a>
+                    <a href="../th/index.html" class="text-gray-400 hover:text-white">ภาษาไทย</a>
+                    <a href="../jp/index.html" class="text-gray-400 hover:text-white">日本語</a>
+                    <a href="../zh-tw/index.html" class="text-gray-400 hover:text-white">繁體中文</a>
+                    <a href="../zh-cn/index.html" class="text-gray-400 hover:text-white">简体中文</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

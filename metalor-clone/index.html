@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDP 電鍍塗裝 - 專業電鍍表面處理服務供應商</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-white">
+    <!-- 頂部語言選擇 -->
+    <div class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 py-1 flex justify-end text-sm">
+            <div class="flex space-x-4">
+                <a href="en/index.html" class="hover:text-blue-300">English</a>
+                <a href="th/index.html" class="hover:text-blue-300">ภาษาไทย</a>
+                <a href="jp/index.html" class="hover:text-blue-300">日本語</a>
+                <a href="zh-tw/index.html" class="hover:text-blue-300">繁體中文</a>
+                <a href="zh-cn/index.html" class="hover:text-blue-300">简体中文</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 導航欄 -->
+    <nav class="bg-white shadow-lg" x-data="{ 
+        isOpen: false,
+        activeMenu: null,
+        activeSubmenu: null,
+        toggleMenu(menu) {
+            this.activeMenu = this.activeMenu === menu ? null : menu;
+            this.activeSubmenu = null;
+        },
+        toggleSubmenu(submenu) {
+            this.activeSubmenu = this.activeSubmenu === submenu ? null : submenu;
+        }
+    }">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img class="h-8 w-auto" src="images/logo.png" alt="EDP 電鍍塗裝">
+                    </div>
+                </div>
+
+                <!-- 桌面版選單 -->
+                <div class="hidden sm:flex sm:items-center space-x-4">
+                    <!-- 首頁 -->
+                    <a href="index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">首頁</a>
+                    
+                    <!-- 關於我們 -->
+                    <div class="relative" @mouseenter="toggleMenu('about')" @mouseleave="activeMenu = null">
+                        <button class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">
+                            關於我們
+                        </button>
+                        <div x-show="activeMenu === 'about'" 
+                             class="absolute left-0 mt-2 w-64 bg-white border shadow-lg rounded-md z-50">
+                            <a href="about/company.html" class="block px-4 py-2 hover:bg-gray-100">公司簡介</a>
+                            <a href="about/team.html" class="block px-4 py-2 hover:bg-gray-100">團隊與組織</a>
+                            <a href="about/quality.html" class="block px-4 py-2 hover:bg-gray-100">品質與認證</a>
+                            <a href="about/factory.html" class="block px-4 py-2 hover:bg-gray-100">工廠環境</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 服務項目 -->
+                    <div class="relative" @mouseenter="toggleMenu('services')" @mouseleave="activeMenu = null">
+                        <button class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">
+                            服務項目
+                        </button>
+                        <div x-show="activeMenu === 'services'"
+                             class="absolute left-0 mt-2 w-64 bg-white border shadow-lg rounded-md z-50">
+                            <!-- 電鍍服務 -->
+                            <div class="relative" @mouseenter="toggleSubmenu('plating')" @mouseleave="activeSubmenu = null">
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                                    電鍍服務
+                                </button>
+                                <div x-show="activeSubmenu === 'plating'"
+                                     class="absolute left-full top-0 w-64 bg-white border shadow-lg rounded-md">
+                                    <a href="services/plating-nickel.html" class="block px-4 py-2 hover:bg-gray-100">鎳電鍍</a>
+                                    <a href="services/plating-chrome.html" class="block px-4 py-2 hover:bg-gray-100">鉻電鍍</a>
+                                    <a href="services/plating-zinc.html" class="block px-4 py-2 hover:bg-gray-100">鋅電鍍</a>
+                                    <a href="services/plating-alloy.html" class="block px-4 py-2 hover:bg-gray-100">合金電鍍</a>
+                                </div>
+                            </div>
+                            
+                            <!-- 塗裝服務 -->
+                            <div class="relative" @mouseenter="toggleSubmenu('coating')" @mouseleave="activeSubmenu = null">
+                                <button class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                                    塗裝服務
+                                </button>
+                                <div x-show="activeSubmenu === 'coating'"
+                                     class="absolute left-full top-0 w-64 bg-white border shadow-lg rounded-md">
+                                    <a href="services/coating-spray.html" class="block px-4 py-2 hover:bg-gray-100">噴漆、粉體塗裝</a>
+                                    <a href="services/coating-anticorrosion.html" class="block px-4 py-2 hover:bg-gray-100">特殊耐蝕塗層</a>
+                                    <a href="services/coating-custom.html" class="block px-4 py-2 hover:bg-gray-100">客製化表面處理</a>
+                                </div>
+                            </div>
+                            
+                            <!-- 客製加工 -->
+                            <a href="services/customization.html" class="block px-4 py-2 hover:bg-gray-100">客製加工</a>
+                            
+                            <!-- 技術支援 -->
+                            <a href="services/technical-support.html" class="block px-4 py-2 hover:bg-gray-100">技術支援</a>
+                        </div>
+                    </div>
+                    
+                    <!-- 成功案例 -->
+                    <a href="cases/index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">成功案例</a>
+                    
+                    <!-- 新聞與技術 -->
+                    <a href="news/index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">新聞與技術</a>
+                    
+                    <!-- 聯絡我們 -->
+                    <a href="contact/index.html" class="px-3 py-2 text-gray-700 hover:text-blue-600 menu-item">聯絡我們</a>
+                </div>
+
+                <!-- 手機版選單按鈕 -->
+                <div class="flex items-center sm:hidden">
+                    <button @click="isOpen = !isOpen" class="text-gray-700">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 手機版展開選單 -->
+        <div x-show="isOpen" class="sm:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700">首頁</a>
+                
+                <div class="space-y-1">
+                    <button @click="toggleMenu('mobileAbout')" class="w-full text-left px-3 py-2 text-gray-700 flex justify-between items-center">
+                        關於我們
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div x-show="activeMenu === 'mobileAbout'" class="pl-4">
+                        <a href="about/company.html" class="block px-3 py-2 text-gray-700">公司簡介</a>
+                        <a href="about/team.html" class="block px-3 py-2 text-gray-700">團隊與組織</a>
+                        <a href="about/quality.html" class="block px-3 py-2 text-gray-700">品質與認證</a>
+                        <a href="about/factory.html" class="block px-3 py-2 text-gray-700">工廠環境</a>
+                    </div>
+                </div>
+                
+                <!-- 其他手機版選單項目將在另一個編輯中添加 -->
+                
+                <a href="contact/index.html" class="block px-3 py-2 text-gray-700">聯絡我們</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 頁面內容將在另一個編輯中添加 -->
+    
+    <!-- 主橫幅 -->
+    <div class="relative bg-gradient-to-r from-blue-900 to-gray-800 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 py-16 md:py-24 lg:py-32 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                        優質電鍍<span class="text-blue-400">表面處理專家</span>
+                    </h1>
+                    <p class="mt-6 text-xl text-gray-300 max-w-3xl">
+                        提供品質標準、準時交期、專業服務的電鍍塗裝供應商，<br>
+                        滿足您在泰國的製造需求。
+                    </p>
+                    <div class="mt-10 flex">
+                        <a href="contact/index.html" class="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-md text-white font-medium">
+                            立即諮詢
+                        </a>
+                        <a href="services/index.html" class="ml-4 bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-md text-white font-medium">
+                            了解服務
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 背景工藝圖案 -->
+        <div class="absolute inset-y-0 right-0 w-1/2 opacity-20">
+            <svg class="h-full w-full" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                <path d="M400 0C200 0 0 200 0 400C0 600 200 800 400 800C600 800 800 600 800 400C800 200 600 0 400 0ZM400 750C250 750 100 600 100 450C100 300 250 150 400 150C550 150 700 300 700 450C700 600 550 750 400 750Z" fill="currentColor"/>
+                <circle cx="400" cy="400" r="100" fill="currentColor"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 核心數據 -->
+    <div class="bg-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3 text-center">
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-blue-600">20+</div>
+                    <div class="mt-2 text-lg text-gray-600">年電鍍經驗</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-blue-600">500+</div>
+                    <div class="mt-2 text-lg text-gray-600">客戶合作案例</div>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-blue-600">ISO 9001</div>
+                    <div class="mt-2 text-lg text-gray-600">國際品質認證</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 服務總覽 -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">我們的專業服務</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                    為各產業提供全方位的電鍍與表面處理解決方案
+                </p>
+            </div>
+
+            <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                <!-- 服務卡片 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 card-shadow">
+                    <div class="h-48 bg-gray-200 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-gray-800 opacity-90 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900">電鍍服務</h3>
+                        <p class="mt-2 text-gray-600">
+                            包括鎳電鍍、鉻電鍍、鋅電鍍和多種特殊合金電鍍，提供金屬表面優異的耐腐蝕、耐磨和裝飾性能。
+                        </p>
+                        <a href="services/plating.html" class="mt-4 inline-block text-blue-600 hover:text-blue-800">
+                            了解更多 →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 服務卡片 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 card-shadow">
+                    <div class="h-48 bg-gray-200 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-gray-800 opacity-90 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900">塗裝服務</h3>
+                        <p class="mt-2 text-gray-600">
+                            噴漆、粉體塗裝及特殊耐蝕塗層，為產品提供優質的外觀和保護層，滿足不同環境需求。
+                        </p>
+                        <a href="services/coating.html" class="mt-4 inline-block text-blue-600 hover:text-blue-800">
+                            了解更多 →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 服務卡片 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 card-shadow">
+                    <div class="h-48 bg-gray-200 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 to-gray-800 opacity-90 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-gray-900">客製加工</h3>
+                        <p class="mt-2 text-gray-600">
+                            根據客戶需求提供客製化表面處理解決方案，從設計到生產一站式服務，確保最佳效果。
+                        </p>
+                        <a href="services/customization.html" class="mt-4 inline-block text-blue-600 hover:text-blue-800">
+                            了解更多 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 公司優勢 -->
+    <div class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900">為何選擇我們</h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        EDP 電鍍塗裝以專業技術和嚴格品質管理，成為泰國領先的表面處理服務供應商。
+                    </p>
+                    
+                    <div class="mt-8 space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">國際標準認證</h3>
+                                <p class="mt-2 text-gray-600">
+                                    擁有 ISO 9001 品質管理系統認證，嚴格控制生產流程，確保產品品質穩定可靠。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">準時交期承諾</h3>
+                                <p class="mt-2 text-gray-600">
+                                    高效率的生產管理系統和豐富的行業經驗，讓我們能夠確保按時交付，滿足客戶時程需求。
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-gray-900">先進設備與技術</h3>
+                                <p class="mt-2 text-gray-600">
+                                    投資先進電鍍和塗裝設備，採用國際領先技術，確保處理效果達到最高標準。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-10 lg:mt-0">
+                    <div class="rounded-lg overflow-hidden shadow-xl">
+                        <img class="w-full" src="images/factory.jpg" alt="工廠設備">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 成功案例預覽 -->
+    <div class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-gray-900">成功案例</h2>
+                <p class="mt-4 text-xl text-gray-600">
+                    我們為各行業客戶提供優質的表面處理解決方案
+                </p>
+            </div>
+            
+            <div class="mt-12 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                <!-- 案例 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img class="w-full h-48 object-cover" src="images/case1.jpg" alt="汽車零件">
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900">汽車零件電鍍</h3>
+                        <p class="mt-1 text-sm text-gray-600">汽車行業</p>
+                    </div>
+                </div>
+                
+                <!-- 案例 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img class="w-full h-48 object-cover" src="images/case2.jpg" alt="電子連接器">
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900">電子連接器鍍金</h3>
+                        <p class="mt-1 text-sm text-gray-600">電子行業</p>
+                    </div>
+                </div>
+                
+                <!-- 案例 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img class="w-full h-48 object-cover" src="images/case3.jpg" alt="醫療設備">
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900">醫療器械表面處理</h3>
+                        <p class="mt-1 text-sm text-gray-600">醫療行業</p>
+                    </div>
+                </div>
+                
+                <!-- 案例 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <img class="w-full h-48 object-cover" src="images/case4.jpg" alt="建築配件">
+                    <div class="p-4">
+                        <h3 class="font-medium text-gray-900">建築五金塗層</h3>
+                        <p class="mt-1 text-sm text-gray-600">建築行業</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <a href="cases/index.html" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                    查看更多案例
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA 區塊 -->
+    <div class="bg-blue-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-white">準備開始您的電鍍塗裝專案？</h2>
+                <p class="mt-4 text-xl text-blue-100">
+                    聯絡我們獲取專業建議和免費報價
+                </p>
+                <div class="mt-8">
+                    <a href="contact/index.html" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-md text-blue-900 bg-white hover:bg-blue-50">
+                        立即聯絡
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 頁尾將在另一個編輯中添加 -->
+    <footer class="bg-gray-800 text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- 聯絡資訊 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">聯絡我們</h3>
+                    <address class="not-italic">
+                        <p class="mb-2">EDP 電鍍塗裝 (泰國) 有限公司</p>
+                        <p class="mb-2">地址：123 Industrial Estate, Rayong, Thailand</p>
+                        <p class="mb-2">電話：+66 12-345-6789</p>
+                        <p class="mb-2">Email：info@edp-coating.com</p>
+                    </address>
+                </div>
+                
+                <!-- 服務連結 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">服務項目</h3>
+                    <ul class="space-y-2">
+                        <li><a href="services/plating.html" class="text-gray-300 hover:text-white">電鍍服務</a></li>
+                        <li><a href="services/coating.html" class="text-gray-300 hover:text-white">塗裝服務</a></li>
+                        <li><a href="services/customization.html" class="text-gray-300 hover:text-white">客製加工</a></li>
+                        <li><a href="services/technical-support.html" class="text-gray-300 hover:text-white">技術支援</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 關於我們 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">關於我們</h3>
+                    <ul class="space-y-2">
+                        <li><a href="about/company.html" class="text-gray-300 hover:text-white">公司簡介</a></li>
+                        <li><a href="about/quality.html" class="text-gray-300 hover:text-white">品質與認證</a></li>
+                        <li><a href="about/factory.html" class="text-gray-300 hover:text-white">工廠環境</a></li>
+                        <li><a href="cases/index.html" class="text-gray-300 hover:text-white">成功案例</a></li>
+                    </ul>
+                </div>
+                
+                <!-- 社群媒體和認證 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">關注我們</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <!-- 認證標誌 -->
+                    <div class="border-t border-gray-700 pt-4">
+                        <h4 class="text-base font-medium mb-2">認證</h4>
+                        <div class="flex space-x-3">
+                            <img src="images/iso9001.png" alt="ISO 9001" class="h-10 bg-white p-1 rounded">
+                            <img src="images/iso14001.png" alt="ISO 14001" class="h-10 bg-white p-1 rounded">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 版權資訊 -->
+            <div class="mt-8 border-t border-gray-700 pt-8">
+                <p class="text-center text-gray-400 text-sm">
+                    © 2024 EDP 電鍍塗裝 (泰國) 有限公司. 版權所有
+                </p>
+                
+                <!-- 語言選擇 -->
+                <div class="mt-4 flex justify-center space-x-4 text-sm">
+                    <a href="en/index.html" class="text-gray-400 hover:text-white">English</a>
+                    <a href="th/index.html" class="text-gray-400 hover:text-white">ภาษาไทย</a>
+                    <a href="jp/index.html" class="text-gray-400 hover:text-white">日本語</a>
+                    <a href="zh-tw/index.html" class="text-gray-400 hover:text-white">繁體中文</a>
+                    <a href="zh-cn/index.html" class="text-gray-400 hover:text-white">简体中文</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
